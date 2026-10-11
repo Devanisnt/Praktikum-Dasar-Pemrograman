@@ -6,7 +6,7 @@ int main(void)
  
     for (baris = 1; baris <= 3; baris++)
     {
-        for (kolom = 1; kolom <= 4; kolom++)
+        for (kolom = 1; kolom <= baris; kolom++)
         {
             printf("* ");
         }

@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int main()
+{
+    int hari;
+    int transaksi;
+    double nilai_transaksi;
+    double total_harian = 0.0;
+    double total_keseluruhan = 0.0;
+ 
+    for (hari = 1; hari <= 3; hari++)
+    {
+        printf("\nHari ke-%d\n", hari);
+
+        total_harian = 0.0;
+        
+        for (transaksi = 1; transaksi <= 4; transaksi++)
+        {
+            do 
+            {
+                printf("Transaksi ke-%d: ", transaksi);
+                scanf("%lf", &nilai_transaksi);
+                
+                if (nilai_transaksi < 0)
+                {
+                    printf("Transaksi tidak boleh negatif.\n");
+                }
+            }
+            while (nilai_transaksi < 0);
+ 
+            total_harian += nilai_transaksi;
+        }
+        printf("Total hari ke-%d: %.2f\n", hari, total_harian);
+ 
+        total_keseluruhan = total_keseluruhan + total_harian;
+    }
+ 
+    printf("\nTotal keseluruhan: %.2f\n", total_keseluruhan);
+ 
+    return 0;
+}
