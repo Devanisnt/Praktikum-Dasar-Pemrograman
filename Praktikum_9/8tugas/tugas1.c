@@ -109,23 +109,45 @@ int main()
     double rata_rata_keseluruhan;
     double persentase_lulus;
     double target;
- 
+    int mahasiswa;
+    int mata_kuliah;
+    
     printf("====================================================\n");
     printf("         PENGELOLAAN NILAI MAHASISWA DAN MK         \n");
     printf("====================================================\n");
-
+    
     printf("Masukkan jumlah mahasiswa 1-%d: ", MAX_MAHASISWA);
     jumlah_mahasiswa = baca_jumlah_dalam_rentang(1, MAX_MAHASISWA);
-
+    
     printf("Masukkan jumlah mata kuliah 1-%d: ", MAX_MATA_KULIAH);
     jumlah_mata_kuliah = baca_jumlah_dalam_rentang(1, MAX_MATA_KULIAH);
- 
+    
     baca_nilai(nilai, jumlah_mahasiswa, jumlah_mata_kuliah);
     tampilkan_tabel_nilai(nilai, jumlah_mahasiswa, jumlah_mata_kuliah);
- 
+    
     /* Tampilkan rekap per mahasiswa. */
- 
+    printf("REKAP PER MAHASISWA\n");
+    printf("----------------------------------------------------\n");
+    for (mahasiswa = 0; mahasiswa < jumlah_mahasiswa; mahasiswa++)
+    {
+        printf("Mahasiswa %d | Total %.2f | Rata-rata %.2f", 
+            mahasiswa + 1,
+            hitung_total_mahasiswa(nilai, mahasiswa, jumlah_mata_kuliah),
+            hitung_rata_rata_mahasiswa(nilai, mahasiswa, jumlah_mata_kuliah));
+    }
+    printf("\n");
+
     /* Tampilkan rekap per mata kuliah. */
+    printf("REKAP PER MATA KULIAH\n");
+    printf("----------------------------------------------------\n");
+    for (mata_kuliah = 0; mata_kuliah < jumlah_mata_kuliah; mata_kuliah++)
+    {
+        printf("MK-%d | Total %.2f | Rata-rata %.2f",
+            mata_kuliah + 1,
+            hitung_total_mata_kuliah(nilai, jumlah_mahasiswa, mata_kuliah),
+            hitung_rata_rata_mata_kuliah(nilai, jumlah_mahasiswa, mata_kuliah));
+    }
+    printf("\n");
  
     total_keseluruhan = hitung_total_keseluruhan(nilai, jumlah_mahasiswa, jumlah_mata_kuliah);
     jumlah_elemen = jumlah_mahasiswa * jumlah_mata_kuliah;
@@ -181,7 +203,7 @@ void baca_nilai(
 {
     int mahasiswa;
     int mata_kuliah;
-
+    
     for (mahasiswa = 0; mahasiswa < jumlah_mahasiswa; mahasiswa++)
     {
         printf("MAHASISWA KE-%d", mahasiswa + 1);
@@ -233,3 +255,61 @@ void tampilkan_tabel_nilai(
         printf("\n");
     }
 }
+
+double hitung_total_mahasiswa(
+    const double nilai[][MAX_MATA_KULIAH],
+    int indeks_mahasiswa,
+    int jumlah_mata_kuliah
+)
+{
+    int mata_kuliah;
+    double total = 0.0;
+
+    for (mata_kuliah = 0; mata_kuliah < jumlah_mata_kuliah; mata_kuliah++)
+    {
+        total += nilai[indeks_mahasiswa][jumlah_mata_kuliah];
+    }
+
+    return total;
+}
+
+double hitung_rata_rata_mahasiswa(
+    const double nilai[][MAX_MATA_KULIAH],
+    int indeks_mahasiswa,
+    int jumlah_mata_kuliah
+)
+{
+    return hitung_total_mahasiswa(nilai, indeks_mahasiswa, jumlah_mata_kuliah) / jumlah_mata_kuliah;
+}
+
+double hitung_total_mata_kuliah(
+    const double nilai[][MAX_MATA_KULIAH],
+    int jumlah_mahasiswa,
+    int indeks_mata_kuliah
+)
+{
+    int mahasiswa;
+    double total = 0.0;
+
+    for (mahasiswa = 0; mahasiswa < jumlah_mahasiswa; mahasiswa++)
+    {
+        total += nilai[jumlah_mahasiswa][indeks_mata_kuliah];
+    }
+
+    return total;
+}
+
+double hitung_rata_rata_mata_kuliah(
+    const double nilai[][MAX_MATA_KULIAH],
+    int jumlah_mahasiswa,
+    int indeks_mata_kuliah
+)
+{
+    return hitung_total_mata_kuliah(nilai, jumlah_mahasiswa, indeks_mata_kuliah) / jumlah_mahasiswa;
+}
+
+double hitung_total_keseluruhan(
+    const double nilai[][MAX_MATA_KULIAH],
+    int jumlah_mahasiswa,
+    int jumlah_mata_kuliah
+)
