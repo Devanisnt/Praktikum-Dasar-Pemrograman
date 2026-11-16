@@ -7,13 +7,13 @@ int main()
 {
     int matriks_a[MAX_BARIS][MAX_KOLOM] = 
     {
-        {1, 2},
-        {3, 4}
+        {100, 200},
+        {300, 400}
     };
     int matriks_b[MAX_BARIS][MAX_KOLOM] = 
     {
-        {5, 6},
-        {7, 8}
+        {500, 600},
+        {700, 800}
     };
     int hasil[MAX_BARIS][MAX_KOLOM];
     int jumlah_baris = 2;
@@ -59,5 +59,5 @@ int main()
         printf("\n");
     }
     
-    return 0;
+    return 0;   
 }

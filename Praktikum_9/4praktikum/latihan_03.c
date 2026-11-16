@@ -39,7 +39,7 @@ int main(void)
             scanf("%lf", &data[baris][kolom]);
         }
     }
- 
+    
     minimum = data[0][0];
     maksimum = data[0][0];
  

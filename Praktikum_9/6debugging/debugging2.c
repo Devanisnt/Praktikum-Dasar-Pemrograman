@@ -14,18 +14,19 @@ int main(void)
  
     int baris;
     int kolom;
-    int total_baris = 0;
     double rata_rata;
- 
+    
     for (baris = 0; baris < BARIS; baris++)
     {
-        for (kolom = 0; kolom <= KOLOM; kolom++)
+        int total_baris = 0;
+
+        for (kolom = 0; kolom < KOLOM; kolom++)
         {
-            total_baris = data[baris][kolom];
+            total_baris += data[baris][kolom];
         }
-        rata_rata = total_baris / KOLOM;
+        rata_rata = (double) total_baris / KOLOM;
  
-        printf("Rata-rata baris %d: %d\n", baris, rata_rata);
+        printf("Rata-rata baris %d: %.2f\n", baris, rata_rata);
     }
  
     return 0;

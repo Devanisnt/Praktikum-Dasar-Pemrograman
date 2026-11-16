@@ -7,9 +7,9 @@ int main()
 {
     int data[BARIS][KOLOM] = 
     { 
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9}
+        {-5, 5, 10},
+        {100, 50, 55},
+        {100, 75, 90}
     };
     int baris;
     int kolom;
